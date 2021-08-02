@@ -104,7 +104,7 @@ def create_tags(character: str, args: str) -> str:
         else:
             tags = join_tags(['rating:safe', tags, *badtags_strict, *badartists])
     else:
-        tags = join_tags(['rating:safe', tags])
+        tags = join_tags(['rating:safe', tags, *badtags_strict, *badartists])
     return tags
 
 
