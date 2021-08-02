@@ -1,0 +1,21 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+discord = "~=1.0.1"
+skingrabber = "*"
+discord-py-slash-command = "*"
+ply = "*"
+build = "~=0.3.1.post1"
+typing = "~=3.7.4.3"
+future = "~=0.18.2"
+aiohttp = "~=3.7.4.post0"
+Pillow = "*"
+Cython = "~=0.29.22"
+
+[dev-packages]
+
+[requires]
+python_version = "3.9"
