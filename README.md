@@ -21,6 +21,8 @@ Also uses pipenv now.
 
 /inspire -> Gives an (un)inspirational quote using inspirobot's api
 ```
+# Tags Info:
+Use [gelbooru](https://gelbooru.com/) to see available tags
 
 # Args for the art searching commands
 You probably noticed the `[args]` part of the `/c`, `/tag`, and aliases for `/c [name]` commands. Args can be stacked together by separating them with a space. 
