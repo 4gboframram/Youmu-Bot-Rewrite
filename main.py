@@ -3,11 +3,11 @@ import os
 from discord.ext import commands
 from discord_slash import SlashCommand
 
-from cogs import random_fun, sanity_test, background
+from cogs import random_fun, sanity_test, background, other
 from cogs.sauces.characters import Characters
 
 TOKEN = os.getenv('TOKEN')
-bot = commands.Bot(command_prefix=',')
+bot = commands.Bot(command_prefix=',', help_command=None)
 slash = SlashCommand(bot, sync_commands=True)
 
 
@@ -22,6 +22,7 @@ async def on_ready():
 bot.add_cog(random_fun.RandomFun(bot))
 bot.add_cog(sanity_test.SanityCheck(bot))
 bot.add_cog(Characters(bot))
+bot.add_cog(other.Others(bot))
 # bot.add_cog(background.BackgroundTasks(bot))
 
 bot.run(TOKEN)
