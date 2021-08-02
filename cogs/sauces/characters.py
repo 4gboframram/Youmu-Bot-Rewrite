@@ -30,6 +30,7 @@ class Characters(commands.Cog):
 
         @cog_ext.cog_slash(name=name, description=description, guild_ids=Constants.test_guild_id)
         async def char_command(self, ctx, *, args=None):
+            await ctx.defer()
             if score:
                 score_rng = randint(0, 5)
                 await char(ctx, tag + f'+score:>={score_rng}', args=args)
@@ -76,6 +77,7 @@ class Characters(commands.Cog):
     @cog_ext.cog_slash(name="tag", description="Search for artworks with given tags",
                        guild_ids=Constants.test_guild_id)
     async def tag(self, ctx, *, tags, args=None):
+        await ctx.defer()
         tags = tags.split()
         tags = join_tags(tags)
         await char(ctx, tags, args=args)
