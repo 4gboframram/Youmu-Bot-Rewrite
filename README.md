@@ -27,7 +27,7 @@ Use [gelbooru](https://gelbooru.com/) to see available tags
 # Args for the art searching commands
 You probably noticed the `[args]` part of the `/c`, `/tag`, and aliases for `/c [name]` commands. Args can be stacked together by separating them with a space. 
 
-Here's the list of args so far. Combining mutually exclusive arguments will (theoretically) yield no results and later will send an embed saying there is a compatibility issue.
+Here's the list of args so far. Combining mutually exclusive arguments will send an embed saying there is a compatibility issue. 
 ```
 --desc -> Sends a description of the character. Overrides all other tags.
 
