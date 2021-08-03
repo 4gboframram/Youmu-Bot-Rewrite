@@ -23,6 +23,7 @@ bot.add_cog(random_fun.RandomFun(bot))
 bot.add_cog(sanity_test.SanityCheck(bot))
 bot.add_cog(Characters(bot))
 bot.add_cog(other.Others(bot))
+# bot.add_cog(hentai.Hentai(bot))
 # bot.add_cog(background.BackgroundTasks(bot))
 
 bot.run(TOKEN)

@@ -30,7 +30,7 @@ class Constants:
         "Needing some sleep",
         "Wanting headpats"
     ]
-    test_guild_id = [855529286953467945, 853924716178571294]
+    test_guild_id = [855529286953467945, 853924716178571294, 870200621947559956]
 
 
 Character = namedtuple('Character', ['name', 'description', 'tag', 'use_score'])
@@ -109,7 +109,7 @@ class CommandList:
          'komeiji_satori', True),
         ('wan', "placeholder description", 'inubashiri_momiji', False),
         ('momiji', "placeholder description", 'inubashiri_momiji', False),
-        ('ran', "placeholder description", 'yakumo_ran', False),
+        ('ran', "Shikigami of the Gap Youkai that evolves from Vulpix with a Fire Stone", 'yakumo_ran', False),
         ('kagerou', "placeholder description", 'imaizumi_kagerou', False),
         ('reisen', "placeholder description", 'reisen_udongein_inaba', True),
         ('reisen2', "placeholder description", 'reisen', False),
@@ -150,7 +150,7 @@ class CommandList:
         ('parsee', "placeholder description", 'mizuhashi_parsee', False),
         ('tewi', "placeholder description", 'inaba_tewi', False),
         ('medicine', "placeholder description", 'medicine_melancholy', False),
-        ('eiki', "placeholder description", 'shiki_eiki', False),
+        ('eiki', "Judges Hell. Honestly I have no idea what to say about her.", 'shiki_eiki', False),
         ('orin', "placeholder description", 'kaenbyou_rin', False),
         ('kaguya', "placeholder description", 'houraisan_kaguya+-jokanhiyou', True),
         ('eirin', "placeholder description", 'yagokoro_eirin', True),
@@ -237,5 +237,7 @@ class CommandList:
         ('lunasa', "The Violinist of the Prismriver sisters", 'lunasa_prismriver', False),
         ('lyrica', "The keyboardist of the Prismriver sisters", 'lyrica_prismriver', False),
         ('merlin', "Doot", 'merlin_prismriver', False),
-        ('prismriver', "Merlin, Lunasa, and Lyrica :o", 'lunasa_prismriver+lyrica_prismriver+merlin_prismriver', False)
+        ('prismriver', "Merlin, Lunasa, and Lyrica :o", 'lunasa_prismriver+lyrica_prismriver+merlin_prismriver', False),
+        ('eiki', "Judges Hell. Honestly I have no idea what to say about her.", 'shiki_eiki', False),
+        ('ran', "Shikigami of the Gap Youkai that evolves from Vulpix with a Fire Stone", 'yakumo_ran', False),
     )

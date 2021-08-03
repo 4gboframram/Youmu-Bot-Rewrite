@@ -1,6 +1,7 @@
 import asyncio
 import typing
 from random import choice as random_choice, randint
+from typing import List, Union, Set
 
 from aiohttp import ClientSession
 from discord import Embed
@@ -77,12 +78,30 @@ def get_booru_base_url(x: str): return f'https://{x}/index.php?page=dapi&json=1&
 def join_tags(x: typing.Iterable): return "+".join(x)
 
 
+args_list = ["--multi", "--solo", "--gif", "--ns", "--q", "--e"]
+nsfw_args = ["--ns", "--q", "--e"]
+mutually_exclusive = [("--multi", "--solo"), ("--ns", "--q", "--e")]
+
+
+def check_mutually_exclusive(args: List[str]) -> Union[Set[str], bool]:
+    """
+    :param args: List of arguments passed into command
+    :return: True if the arguments are not mutually exclusive, False if compatibility issues between tags
+    """
+    for e in mutually_exclusive:
+        intersection = set(e).intersection(args)
+        if len(intersection) >= 2:
+            return intersection
+    return False
+
+
 def create_tags(character: str, args: str) -> str:
     """
     :param character: The character's booru tag
     :param args: The arguments passed into the command
     :return: a single string containing all of the tags used for a search
     """
+
     tags = join_tags([*boorutags_base, character])
 
     if args:
@@ -94,7 +113,7 @@ def create_tags(character: str, args: str) -> str:
             tags = join_tags([tags, "solo"])
         if "--gif" in _args:
             tags = tags.replace('-animated', 'animated')
-        if "--ns" in _args or "--q" in _args or "--e" in _args:
+        if any(arg in _args for arg in nsfw_args):
             if "--q" in _args:
                 tags = join_tags([tags, "rating:questionable"])
             if "--e" in _args:
@@ -117,10 +136,21 @@ async def char(ctx, character, args, *, booru='gelbooru.com'):
         booru (str): the base booru used. For now, only gelbooru is supported
         character (str): Character to look for
         args (str): arguments for the command
-        nsfw (bool): If true will return NSFW content, False by default
-        animated (bool): If true will return gif content, False by default
     """
-    if args and ("--ns" in args or "--q" in args or "--e" in args) and not ctx.channel.is_nsfw():
+
+    # ("--ns" in args or "--q" in args or "--e" in args)
+    mut_excl = check_mutually_exclusive(args.split())
+    if mut_excl:
+        mut_excl = tuple(mut_excl)
+        await ctx.send(embed=YoumuEmbed(
+            title="Incompatible Tags!",
+            description=f"Tags " + ", ".join(mut_excl[0:-1]) +
+                        " and " + mut_excl[-1] + " are not compatible!",
+            color=0xff0000
+        )
+        )
+        return
+    if args and any(arg in args for arg in nsfw_args) and not ctx.channel.is_nsfw():
         await ctx.send(embed=YoumuEmbed(
             title="You Dirty Pervert!",
             description="Nsfw searches can only be done in nsfw channels, you perv!",
@@ -129,11 +159,6 @@ async def char(ctx, character, args, *, booru='gelbooru.com'):
         )
         return
     url = get_booru_base_url(booru) + create_tags(character, args)
-    '''
-    if not nsfw:
-        url = url.replace('-rating:safe', 'rating:safe') + '+' + join_tags([*badtags_strict, *badartists])
-    if animated:
-        url = url.replace('-animated', 'animated')'''
 
     embed = Embed(title=' ', description=' ', colour=randint(0, 0xFFFFFF))
 
