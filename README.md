@@ -46,7 +46,7 @@ Here's the list of args so far. Combining mutually exclusive arguments will (the
 More args will be added in the future.
 
 
-# Overview of changes
+# Overview of changes from original
 - Removed leveling
 - Removed bot channels
 - Removed prefix database because everything is now slash
