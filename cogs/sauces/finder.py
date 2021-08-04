@@ -139,25 +139,26 @@ async def char(ctx, character, args, *, booru='gelbooru.com'):
     """
 
     # ("--ns" in args or "--q" in args or "--e" in args)
-    mut_excl = check_mutually_exclusive(args.split())
-    if mut_excl:
-        mut_excl = tuple(mut_excl)
-        await ctx.send(embed=YoumuEmbed(
-            title="Incompatible Tags!",
-            description=f"Tags " + ", ".join(mut_excl[0:-1]) +
-                        " and " + mut_excl[-1] + " are not compatible!",
-            color=0xff0000
-        )
-        )
-        return
-    if args and any(arg in args for arg in nsfw_args) and not ctx.channel.is_nsfw():
-        await ctx.send(embed=YoumuEmbed(
-            title="You Dirty Pervert!",
-            description="Nsfw searches can only be done in nsfw channels, you perv!",
-            color=0xff0000
-        )
-        )
-        return
+    if args:
+        mut_excl = check_mutually_exclusive(args.split())
+        if mut_excl:
+            mut_excl = tuple(mut_excl)
+            await ctx.send(embed=YoumuEmbed(
+                title="Incompatible Tags!",
+                description=f"Tags " + ", ".join(mut_excl[0:-1]) +
+                            " and " + mut_excl[-1] + " are not compatible!",
+                color=0xff0000
+            )
+            )
+            return
+        if any(arg in args for arg in nsfw_args) and not ctx.channel.is_nsfw():
+            await ctx.send(embed=YoumuEmbed(
+                title="You Dirty Pervert!",
+                description="Nsfw searches can only be done in nsfw channels, you perv!",
+                color=0xff0000
+            )
+            )
+            return
     url = get_booru_base_url(booru) + create_tags(character, args)
 
     embed = Embed(title=' ', description=' ', colour=randint(0, 0xFFFFFF))
