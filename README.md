@@ -20,7 +20,12 @@ Also uses pipenv now.
 /tag [tags] optional: [args] -> Search for artwork with the given tags and args. Note: you can separate tags with a space, just as you do with gelbooru. 
 
 /inspire -> Gives an (un)inspirational quote using inspirobot's api
+
+/ttt [player] -> Challenge someone to TicTacToe (Naughts and Crosses)
+
+/spellcard -> Creates a random name for a spellcard using a Markov chain
 ```
+
 # Tags Info:
 Use [gelbooru](https://gelbooru.com/) to see available tags
 
@@ -62,10 +67,8 @@ More args will be added in the future.
 - Made the documentation less verbose
 -
 # TODO
-- Add a help command that links here
 - Add more character descriptions
-- Reimplement Tic Tac Toe
 - Add more fun stuff
 - Add more args for art searching
 - Do more testing
-- Host the bot on my own Raspberry Pi when I get it
+- Host the bot on my own Raspberry Pi when I get it (Just got the Raspberry Pi)
