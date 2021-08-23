@@ -1,0 +1,1 @@
+"""The art-searching package for Youmu Bot"""

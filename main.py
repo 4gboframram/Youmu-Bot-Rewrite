@@ -2,9 +2,11 @@ import os
 
 from discord.ext import commands
 from discord_slash import SlashCommand
-
-from cogs import random_fun, sanity_test, background, other
-from cogs.sauces.characters import Characters
+from src.cogs import random_fun, sanity_test, background
+from src.cogs import other
+from src.cogs.sauces.characters import Characters
+from src.cogs.games import Games
+from src.cogs.spellcard import Spellcard
 
 TOKEN = os.getenv('TOKEN')
 bot = commands.Bot(command_prefix=',', help_command=None)
@@ -23,6 +25,8 @@ bot.add_cog(random_fun.RandomFun(bot))
 bot.add_cog(sanity_test.SanityCheck(bot))
 bot.add_cog(Characters(bot))
 bot.add_cog(other.Others(bot))
+bot.add_cog(Games(bot))
+bot.add_cog(Spellcard(bot))
 # bot.add_cog(hentai.Hentai(bot))
 # bot.add_cog(background.BackgroundTasks(bot))
 
