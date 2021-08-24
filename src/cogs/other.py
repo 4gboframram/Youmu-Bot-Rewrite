@@ -13,7 +13,7 @@ class Others(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @cog_ext.cog_slash(name='inspire', description="Feeling sad? Try this!", guild_ids=Constants.test_guild_id)
+    @cog_ext.cog_slash(name='inspire', description="Feeling sad? Try this!", )
     async def inspire(self, ctx):
         try:
             url = 'http://inspirobot.me/api?generate=true'
@@ -30,7 +30,7 @@ class Others(commands.Cog):
             await ctx.send('Inspirobot is broken, there is no reason to live.')
 
     @cog_ext.cog_slash(name='help', description='View the help and documentation for the bot',
-                       guild_ids=Constants.test_guild_id)
+                       )
     async def help(self, ctx):
         buttons = [
             create_button(style=ButtonStyle.URL, label="Github Repo",

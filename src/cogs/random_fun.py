@@ -44,7 +44,7 @@ class RandomFun(commands.Cog):
                            colour=self.embed_color)
         await ctx.send(embed=embed)
 
-    @cog_ext.cog_slash(name="ship", description="The love boat sets sail...", guild_ids=Constants.test_guild_id)
+    @cog_ext.cog_slash(name="ship", description="The love boat sets sail...", )
     async def ship(self, ctx, thing_1: str, thing_2: str = None) -> None:
         if not thing_2:
             thing_2 = ctx.author.mention

@@ -30,7 +30,7 @@ class Characters(commands.Cog):
 
     def make_command(self, name, description, tag, score):
 
-        @cog_ext.cog_slash(name=name, description=description, guild_ids=Constants.test_guild_id)
+        @cog_ext.cog_slash(name=name, description=description, )
         @retry(exceptions=discord.errors.NotFound, delay=2, tries=4)
         async def char_command(self, ctx, *, args=None):
             print("args")
@@ -45,7 +45,7 @@ class Characters(commands.Cog):
 
     @cog_ext.cog_slash(name='c',
                        description="The command used for searching artworks of all 146 characters",
-                       guild_ids=Constants.test_guild_id)
+                       )
     @retry(exceptions=discord.errors.NotFound, tries=4, delay=2)
     async def c(self, ctx, name, *, args=None):
         _name = name.lower().strip()
@@ -71,7 +71,7 @@ class Characters(commands.Cog):
                                             color=0xff0000))
 
     @cog_ext.cog_slash(name='char_list', description="I'll dm you the list of characters",
-                       guild_ids=Constants.test_guild_id)
+                       )
     async def li(self, ctx):
         await ctx.author.send(embed=YoumuEmbed(title="List of Characters",
                                                description='\n'.join(
@@ -81,7 +81,7 @@ class Characters(commands.Cog):
         await ctx.send('Check your dms ;)')
 
     @cog_ext.cog_slash(name="tag", description="Search for artworks with given tags",
-                       guild_ids=Constants.test_guild_id)
+                       )
     async def tag(self, ctx, *, tags, args=None):
         await ctx.defer()
         tags = tags.split()

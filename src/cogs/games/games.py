@@ -37,7 +37,7 @@ class Games(commands.Cog):
         self.bot = bot
 
     @cog_ext.cog_slash(name='ttt', description="A game of Tic Tac Toe (Naughts and Crosses)",
-                       guild_ids=Constants.test_guild_id)
+                       )
     async def ttt(self, ctx, player: discord.Member):
         if player.id == ctx.author.id:
             await ctx.send("You can't challenge yourself!")
@@ -65,7 +65,7 @@ class Games(commands.Cog):
                 create_button(label='Expired Invite :(', style=ButtonStyle.red, emoji='❎', disabled=True))
             await m.edit(components=[button])
 
-    @cog_ext.cog_slash(name="rps", description="Rock, Paper, Scissors.. Shoot!", guild_ids=Constants.test_guild_id)
+    @cog_ext.cog_slash(name="rps", description="Rock, Paper, Scissors.. Shoot!", )
     async def rps(self, ctx, choose: str) -> None:
         choose = choose.lower()
         bot_choice = random.choice(["rock", "paper", "scissors"])
