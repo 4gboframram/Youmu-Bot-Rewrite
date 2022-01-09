@@ -67,8 +67,9 @@ More args will be added in the future.
 - Made the documentation less verbose
 -
 # TODO
+- Probably not gonna do anything
 - Add more character descriptions
 - Add more fun stuff
 - Add more args for art searching
 - Do more testing
-- Host the bot on my own Raspberry Pi when I get it (Just got the Raspberry Pi)
+
