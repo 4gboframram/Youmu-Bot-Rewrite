@@ -201,7 +201,7 @@ class CommandList:
         ('kirishima', "placeholder description", 'kirishima_(kantai_collection)', False)
     )]
     alias_commands = (
-        ('reimu', 'A broke shrine maiden that lights her ribbon on fire in Bad Apple :(', 'hakurei_reimu', True),
+        ('reimu', 'A broke shrine maiden that can turn you into fumo', 'hakurei_reimu', True),
         ('marisa', 'An ordinary magician that does shrooms, ze~', 'kirisame_marisa', True),
         ('youmu', 'A half human, half sperm, that can cut anything with her two swords. I mean half ghost!',
          'konpaku_youmu', False),

@@ -12,10 +12,11 @@ class BackgroundTasks(commands.Cog):
 
     @tasks.loop(hours=1)
     async def change_status(self):
-        print("Changing Status")
+        print("[LOG] Changing Status...")
         chosen_presence = choice(Constants.presences)
         while chosen_presence == self.previous_presence:
             chosen_presence = choice(Constants.presences)
 
         await self.bot.change_presence(activity=discord.Game(chosen_presence))
         self.previous_presence = chosen_presence
+        print("[LOG] Changed Status Successfully!")

@@ -38,13 +38,13 @@ class RandomFun(commands.Cog):
 
     @cog_ext.cog_slash(name="percent", description="What percent this thing are you?")
     async def percent(self, ctx, *, thing: str) -> None:
-        h = RandomFun.rng(thing, 100)
+        h = RandomFun.rng(str(ctx.author.id) + thing, 100)
         embed = YoumuEmbed(title="You are...",
                            description=f"{ctx.author.mention}, you are {h}% *{thing}*",
                            colour=self.embed_color)
         await ctx.send(embed=embed)
 
-    @cog_ext.cog_slash(name="ship", description="The love boat sets sail...", )
+    @cog_ext.cog_slash(name="ship", description="The love boat sets sail...")
     async def ship(self, ctx, thing_1: str, thing_2: str = None) -> None:
         if not thing_2:
             thing_2 = ctx.author.mention

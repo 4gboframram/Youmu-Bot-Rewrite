@@ -11,6 +11,7 @@ typing = "~=3.7.4.3"
 future = "~=0.18.2"
 aiohttp = "~=3.7.4.post0"
 Cython = "~=0.29.22"
+retry = "*"
 
 [dev-packages]
 

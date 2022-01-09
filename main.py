@@ -15,10 +15,12 @@ slash = SlashCommand(bot, sync_commands=True)
 
 @bot.event
 async def on_ready():
-    print(bot.user.name, "has connected to discord")
-    print("Starting background tasks")
+    print("[LOG]", bot.user.name, "has connected to discord")
+    print("[LOG] Starting background tasks...")
     bg = background.BackgroundTasks(bot)
     bg.change_status.start()
+    print("[LOG] Background tasks started successfully")
+    print("[DEBUG] Bot is in guilds:", [i.id for i in bot.guilds])
 
 
 bot.add_cog(random_fun.RandomFun(bot))
@@ -27,7 +29,6 @@ bot.add_cog(Characters(bot))
 bot.add_cog(other.Others(bot))
 bot.add_cog(Games(bot))
 bot.add_cog(Spellcard(bot))
-# bot.add_cog(hentai.Hentai(bot))
-# bot.add_cog(background.BackgroundTasks(bot))
+
 
 bot.run(TOKEN)

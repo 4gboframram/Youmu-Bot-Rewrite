@@ -14,26 +14,20 @@ from src.embeds import YoumuEmbed
 character_name_list = [i.name for i in CommandList.character_list]
 # alias_commands = [i for i in character_list if i[1] != "placeholder description"]
 
-"""f = open('current commands.txt', 'a+')
-f.write(repr(tuple(alias_commands)).replace('description=', '').replace('name=', '').replace('tag=', '').replace(
-    'use_score=', '').replace('Character', ''))
-f.close()"""
-
 
 class Characters(commands.Cog):
 
     def __init__(self, bot):
         self.bot = bot
         for command in CommandList.alias_commands:
-            print(command[0], command[1], len(command[1]))
+            print("[LOG]: Registed", repr(command[0]), "with description:", repr(command[1]))
             self.make_command(*command)
 
     def make_command(self, name, description, tag, score):
 
-        @cog_ext.cog_slash(name=name, description=description, )
+        @cog_ext.cog_slash(name=name, description=description)
         @retry(exceptions=discord.errors.NotFound, delay=2, tries=4)
         async def char_command(self, ctx, *, args=None):
-            print("args")
             await ctx.defer()
             if score:
                 score_rng = randint(0, 5)
@@ -44,8 +38,7 @@ class Characters(commands.Cog):
         setattr(self, name, char_command)
 
     @cog_ext.cog_slash(name='c',
-                       description="The command used for searching artworks of all 146 characters",
-                       )
+                       description="The command used for searching artworks of all 146 characters",)
     @retry(exceptions=discord.errors.NotFound, tries=4, delay=2)
     async def c(self, ctx, name, *, args=None):
         _name = name.lower().strip()
@@ -70,8 +63,7 @@ class Characters(commands.Cog):
                                             description=f"**{name.title()}** is not a character on my list!",
                                             color=0xff0000))
 
-    @cog_ext.cog_slash(name='char_list', description="I'll dm you the list of characters",
-                       )
+    @cog_ext.cog_slash(name='char_list', description="I'll dm you the list of characters")
     async def li(self, ctx):
         await ctx.author.send(embed=YoumuEmbed(title="List of Characters",
                                                description='\n'.join(
@@ -80,8 +72,7 @@ class Characters(commands.Cog):
                                                color=0xfcdeae))
         await ctx.send('Check your dms ;)')
 
-    @cog_ext.cog_slash(name="tag", description="Search for artworks with given tags",
-                       )
+    @cog_ext.cog_slash(name="tag", description="Search for artworks with given tags")
     async def tag(self, ctx, *, tags, args=None):
         await ctx.defer()
         tags = tags.split()

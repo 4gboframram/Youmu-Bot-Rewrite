@@ -32,7 +32,7 @@ class Spellcard(commands.Cog):
 
         return ' '.join(result).title().replace('｢ ', '｢')
 
-    @cog_ext.cog_slash(name="spellcard", description="Create a random spellcard name?", )
+    @cog_ext.cog_slash(name="spellcard", description="Create a random spellcard name?")
     async def spellcard(self, ctx):
         await ctx.send(self.generate_spellcard())
 

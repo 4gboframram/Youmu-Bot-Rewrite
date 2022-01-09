@@ -13,7 +13,7 @@ class Others(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @cog_ext.cog_slash(name='inspire', description="Feeling sad? Try this!", )
+    @cog_ext.cog_slash(name='inspire', description="Feeling sad? Try this!")
     async def inspire(self, ctx):
         try:
             url = 'http://inspirobot.me/api?generate=true'
@@ -29,8 +29,7 @@ class Others(commands.Cog):
         except aiohttp.ClientError:
             await ctx.send('Inspirobot is broken, there is no reason to live.')
 
-    @cog_ext.cog_slash(name='help', description='View the help and documentation for the bot',
-                       )
+    @cog_ext.cog_slash(name='help', description='View the help and documentation for the bot',)
     async def help(self, ctx):
         buttons = [
             create_button(style=ButtonStyle.URL, label="Github Repo",

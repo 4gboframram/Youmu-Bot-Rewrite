@@ -71,3 +71,4 @@ More args will be added in the future.
 - Add more fun stuff
 - Add more args for art searching
 - Do more testing
+- Host the bot on my own Raspberry Pi when I get it (Just got the Raspberry Pi)

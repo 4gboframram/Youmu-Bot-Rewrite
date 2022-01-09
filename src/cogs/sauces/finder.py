@@ -170,7 +170,9 @@ async def char(ctx, character, args, *, booru='gelbooru.com'):
                 embed.set_author(name='Nothing found :(')
                 await ctx.send(embed=embed)
                 return
-            data = random_choice(data)
+            data = random_choice(data['post']) # accomodate for new gelbooru api changes
+                
+                
     booru_sauce = data['source']
 
     if booru_sauce == '':
@@ -189,6 +191,6 @@ async def char(ctx, character, args, *, booru='gelbooru.com'):
     embed.add_field(name='Image source', value=booru_sauce, inline=False)
     embed.add_field(name='Gelbooru ID', value=data['id'], inline=True)
     embed.add_field(name='Dimensions', value=f"{data['width']}x{data['height']}", inline=True)
-    print('asd')
+    print('[DEBUG] Post sent:', character)
     await asyncio.sleep(0.15)
     await ctx.send(embed=embed)

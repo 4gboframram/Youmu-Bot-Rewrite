@@ -65,7 +65,7 @@ class Games(commands.Cog):
                 create_button(label='Expired Invite :(', style=ButtonStyle.red, emoji='❎', disabled=True))
             await m.edit(components=[button])
 
-    @cog_ext.cog_slash(name="rps", description="Rock, Paper, Scissors.. Shoot!", )
+    @cog_ext.cog_slash(name="rps", description="Rock, Paper, Scissors.. Shoot!")
     async def rps(self, ctx, choose: str) -> None:
         choose = choose.lower()
         bot_choice = random.choice(["rock", "paper", "scissors"])
