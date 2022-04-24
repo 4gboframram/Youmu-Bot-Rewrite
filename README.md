@@ -34,7 +34,7 @@ You probably noticed the `[args]` part of the `/c`, `/tag`, and aliases for `/c 
 
 Here's the list of args so far. Combining mutually exclusive arguments will send an embed saying there is a compatibility issue. 
 ```
---desc -> Sends a description of the character. Overrides all other tags.
+--desc -> Sends a description of the character. Overrides all other tags. Only works in the /c command
 
 --solo -> Only artworks with the character by themselves allowed. Mutually exclusive with --multi.
 
