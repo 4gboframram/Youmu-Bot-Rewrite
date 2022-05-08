@@ -28,7 +28,7 @@ class RpsString(str):
         elif t in ("rock", "paper", "scissors"):
             return 0
         else:
-            return random.choice(range(3))  # If not rock, paper, or scissors, return a random result
+            return random.choice((0, 1, 2))  # If not rock, paper, or scissors, return a random result
 
 
 class Games(commands.Cog):
@@ -65,19 +65,20 @@ class Games(commands.Cog):
                 create_button(label='Expired Invite :(', style=ButtonStyle.red, emoji='❎', disabled=True))
             await m.edit(components=[button])
 
-    @cog_ext.cog_slash(name="rps", description="Rock, Paper, Scissors.. Shoot!")
+    @cog_ext.cog_slash(name="rps", description="Rock, Paper, Scissors... Shoot!")
     async def rps(self, ctx, choose: str) -> None:
-        choose = choose.lower()
         bot_choice = random.choice(["rock", "paper", "scissors"])
-        win_embed = YoumuEmbed(title="Rock, Paper, Scissors.. Shoot!",
+        choose = choose.lower()
+        
+        win_embed = YoumuEmbed(title="Rock, Paper, Scissors... Shoot!",
                                description=f"You chose **{choose.title()}**, " +
                                            f"I chose **{bot_choice.title()}**, I win", color=0xaa22cc)
 
-        lose_embed = YoumuEmbed(title="Rock, Paper, Scissors.. Shoot!",
+        lose_embed = YoumuEmbed(title="Rock, Paper, Scissors... Shoot!",
                                 description=f"You chose **{choose.title()}**, " +
                                             f"I chose **{bot_choice.title()}**, You win", color=0xaa22cc)
 
-        tie_embed = YoumuEmbed(title="Rock, Paper, Scissors.. Shoot!",
+        tie_embed = YoumuEmbed(title="Rock, Paper, Scissors... Shoot!",
                                description=f"You chose **{choose.title()}**, " +
                                            f"I chose **{bot_choice.title()}**, Nobody wins", color=0xaa22cc)
 

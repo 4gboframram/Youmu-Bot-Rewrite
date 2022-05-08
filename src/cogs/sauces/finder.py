@@ -69,13 +69,14 @@ badtags_strict = ['-underwear', '-sideboob', '-pov_feet', '-underboob', '-upskir
                   "-you're_doing_it_wrong", '-midriff', '-large_breasts', '-embarrassed', '-smelling', '-chains',
                   '-collar', '-arms_up', '-blurry_vision', '-obese', '-miniskirt', ]
 
+very_bad_tags = ['-loli', '-shota']
 
 # Takes a booru (i.e. gelbooru.com) and returns a base API entry point
 def get_booru_base_url(x: str): return f'https://{x}/index.php?page=dapi&json=1&s=post&q=index&tags='
 
 
 # Joins all the tags on the given list by a plus sign
-def join_tags(x: typing.Iterable): return "+".join(x)
+def join_tags(x: typing.Iterable[str]): return "+".join(x)
 
 
 args_list = ["--multi", "--solo", "--gif", "--ns", "--q", "--e"]
@@ -120,10 +121,13 @@ def create_tags(character: str, args: str) -> str:
                 tags = join_tags([tags, "rating:explicit"])
             if "--ns" in _args:
                 tags = join_tags([tags, "-rating:safe"])
+            tags = join_tags([tags, *very_bad_tags])
         else:
             tags = join_tags(['rating:safe', tags, *badtags_strict, *badartists])
     else:
         tags = join_tags(['rating:safe', tags, *badtags_strict, *badartists])
+        
+    # tags = join_tags([*tags, *very_bad_tags])
     return tags
 
 
@@ -166,11 +170,13 @@ async def char(ctx, character, args, *, booru='gelbooru.com'):
     async with ClientSession() as session:
         async with session.get(url) as res:
             data = await res.json()
-            if not data:
+            try:
+                 data = random_choice(data['post']) # accomodate for new gelbooru api changes
+            except KeyError:
                 embed.set_author(name='Nothing found :(')
+                embed.description = 'This could be because you tried to search blacklisted tags or because there is no such post'
                 await ctx.send(embed=embed)
                 return
-            data = random_choice(data['post']) # accomodate for new gelbooru api changes
                 
                 
     booru_sauce = data['source']

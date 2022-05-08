@@ -52,9 +52,12 @@ class RandomFun(commands.Cog):
                                int.from_bytes(hashlib.md5(thing_1.encode("utf8")).digest(), 'big') +
                                int.from_bytes(hashlib.md5(thing_2.encode("utf8")).digest(), 'big')
                        ) % 101
+        if any("692981485975633950" in thing for thing in (thing_1, thing_2)):
+          ship_percent = 101
+        
         ship_compatibility = "Perfect" if 90 < ship_percent <= 100 else "Very Good" if 80 < ship_percent <= 90 else \
             "Decent" if 70 < ship_percent <= 80 else "Slightly Above Average" if 50 < ship_percent <= 70 else \
-                "Slightly Below Average" if 40 < ship_percent <= 50 else "Horrible"
+               "Slightly Below Average" if 40 < ship_percent <= 50 else "Horrible"
 
         bar_len = 15
         bar = int(bar_len * ship_percent / 100) * '💚' + (bar_len - int(bar_len * ship_percent / 100)) * '🖤'

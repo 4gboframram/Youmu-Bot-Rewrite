@@ -20,8 +20,8 @@ class Characters(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         for command in CommandList.alias_commands:
-            print("[LOG]: Registed", repr(command[0]), "with description:", repr(command[1]))
             self.make_command(*command)
+            print("[LOG]: Registed", repr(command[0]), "with description:", repr(command[1]))
 
     def make_command(self, name, description, tag, score):
 
@@ -29,6 +29,9 @@ class Characters(commands.Cog):
         @retry(exceptions=discord.errors.NotFound, delay=2, tries=4)
         async def char_command(self, ctx, *, args=None):
             await ctx.defer()
+            if args and "--desc" in args:
+                await ctx.send(f'{name.title()}: {description}')
+                return
             if score:
                 score_rng = randint(0, 5)
                 await char(ctx, tag + f'+score:>={score_rng}', args=args)

@@ -21,7 +21,7 @@ class Others(commands.Cog):
             async with aiohttp.ClientSession() as s:
                 async with s.get(url, params=params) as response:
                     image = await response.text()
-            embed = YoumuEmbed(title='Inspiration.jpg', colour=0x53cc74)
+            embed = YoumuEmbed(title='Inspiration.png', colour=0x53cc74)
             embed.set_image(url=image)
 
             await ctx.send(embed=embed)
